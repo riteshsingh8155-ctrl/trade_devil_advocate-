@@ -1,32 +1,18 @@
+import os
 import threading
 from http.server import HTTPServer, BaseHTTPRequestHandler
+
 class KeepAliveHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
         self.end_headers()
         self.wfile.write(b"Bot Live")
+
 def _run_keep_alive():
-    import os
-    port=int(os.environ.get("PORT",10000))
-    HTTPServer(("0.0.0.0",port),KeepAliveHandler).serve_forever()
-threading.Thread(target=_run_keep_alive,daemon=True).start()"""
-Trade Agents: local multi-agent analyser for Angel One SmartAPI.
-ALERT-ONLY: it never places orders. Your keys stay in .env on your machine.
+    port = int(os.environ.get("PORT", 10000))
+    HTTPServer(("0.0.0.0", port), KeepAliveHandler).serve_forever()
 
-Setup:  pip install -r requirements.txt
-        copy .env.example to .env and fill it in
-Run:    python trade_agents.py once NIFTY          # one pass
-        python trade_agents.py scan                # repeat every 5 min
-        python trade_agents.py csv NIFTY 5m        # print candles to paste in the web app
-        python trade_agents.py result 3 win        # teach the bot (trade id, win|loss)
-        python trade_agents.py check NIFTY long 22050 22000 22200   # tell me if I am making a mistake
-        python trade_agents.py backtest NIFTY 15m  # test the rules on history
-        python trade_agents.py fii                 # FII/DII flows + foreign buys in big deals
-        python trade_agents.py sectors nsdl.csv    # rank sectors by FPI buying (CSV: sector,net)
-        python trade_agents.py news                # scan market headlines, tag + tilt
-        python trade_agents.py chat                # talk to the coach AI (needs ANTHROPIC_API_KEY)
-
-Agents (the Automaton idea: goal + genesis prompt per agent, loop Think > Act > Observe > Report):
+threading.Thread(target=_run_keep_alive, daemon=True).start()
 """
 import os, sys, time, sqlite3
 import pandas as pd, pyotp
