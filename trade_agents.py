@@ -12,15 +12,15 @@ def _run_keep_alive():
     port=int(os.environ.get("PORT",10000))
     HTTPServer(("0.0.0.0",port),KeepAliveHandler).serve_forever()
 
-threading.Thread(target=_run_keep_alive, daemon=True).start()
+threading.Thread(target=_run_keep_alive, daemon=True).start()'
 
-"""
-import os, sys, time, sqlit3
+import os, sys, time, sqlite3
 import pandas as pd, pyotp
 from dotenv import load_dotenv
 from SmartApi import SmartConnect
 
 load_dotenv()
+
 CHARTER = {  # genesis prompts: each agent has ONE job
     "Data": "Fetch clean candles for 1m..1w from Angel One. Nothing else.",
     "Indicator": "Compute EMA 5/9/13/18/24/34/50/200, RSI, MACD. Report bias only.",
