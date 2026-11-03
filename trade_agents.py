@@ -12,7 +12,7 @@ def _run_keep_alive():
     port=int(os.environ.get("PORT",10000))
     HTTPServer(("0.0.0.0",port),KeepAliveHandler).serve_forever()
 
-threading.Thread(target=_run_keep_alive, daemon=True).start()'
+threading.Thread(target=_run_keep_alive, daemon=True).start()
 
 import os, sys, time, sqlite3
 import pandas as pd, pyotp
