@@ -1,4 +1,3 @@
-import os
 import threading
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
@@ -9,7 +8,11 @@ class KeepAliveHandler(BaseHTTPRequestHandler):
         self.wfile.write(b"Bot Live")
 
 def _run_keep_alive():
-    port = int(os.environ.get("PORT", 10000))
+    import os
+    port=int(os.environ.get("PORT",10000))
+    HTTPServer(("0.0.0.0",port),KeepAliveHandler).serve_forever()
+
+threading.Thread(target=_run_keep_alive, daemon=True).start()
     HTTPServer(("0.0.0.0", port), KeepAliveHandler).serve_forever()
 
 threading.Thread(target=_run_keep_alive, daemon=True).start()
