@@ -13,11 +13,9 @@ def _run_keep_alive():
     HTTPServer(("0.0.0.0",port),KeepAliveHandler).serve_forever()
 
 threading.Thread(target=_run_keep_alive, daemon=True).start()
-    HTTPServer(("0.0.0.0", port), KeepAliveHandler).serve_forever()
 
-threading.Thread(target=_run_keep_alive, daemon=True).start()
 """
-import os, sys, time, sqlite3
+import os, sys, time, sqlit3
 import pandas as pd, pyotp
 from dotenv import load_dotenv
 from SmartApi import SmartConnect
