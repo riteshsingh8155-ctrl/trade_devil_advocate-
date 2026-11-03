@@ -1,0 +1,10 @@
+smartapi-python
+pyotp
+pandas
+python-dotenv
+logzero
+websocket-client
+pyttsx3
+anthropic
+requests
+feedparser
